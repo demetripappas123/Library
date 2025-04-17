@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    width: 100vw;
+    height: 90vh;
+    background-color: rgb(129, 85, 60);
+    padding: 15px;
+    gap: 15px;
+}
+
+.card{
+    padding: 5px;
+}
+
+
+
