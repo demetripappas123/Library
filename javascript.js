@@ -1,17 +1,28 @@
 const myLibrary = [];
 
-function Book(title, author, pages, read){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = crypto.randomUUID();
+class Book{
+    constructor(title, author, pages, read){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = crypto.randomUUID();
+    }
+    
+    addBook(){
+        myLibrary.push(this);
+    }
+
+    toggleRead(){
+        if(this.read == 1){
+            this.read = 0;
+        }
+        else{
+            this.read = 1;
+        }
+    }
 }
 
-function addBook(title, author, pages, read){
-    let book = new Book(title, author, pages, read);
-    myLibrary.push(book);
-}
 
 const container = document.getElementById("container");
 
@@ -70,7 +81,6 @@ function display(){
     });
 
 }
-/* this doesnt work because of rebinding listeeners or zomethign*/
 
 
 const addButton = document.getElementById("addButton");
@@ -94,17 +104,11 @@ submitForm.addEventListener("click", (event)=>{
     let pages = document.getElementById("pages").value;
     let read = document.getElementById("read").value;
 
-    addBook(title, author, pages, read);
+    let book = new Book(title, author, pages, read);
+    book.addBook();
     display();
     dialog.close();
 });
 
-Book.prototype.toggleRead = function(){
-    if(this.read == 1){
-        this.read = 0;
-    }
-    else{
-        this.read = 1;
-    }
-}
+
 
