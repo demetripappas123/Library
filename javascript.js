@@ -88,6 +88,18 @@ const dialog = document.getElementById("dialog");
 
 addButton.addEventListener("click",()=>{
     dialog.showModal();
+    let title = document.getElementById("title");
+    title.addEventListener("input", ()=>{
+        title.setCustomValidity("");
+        if(!title.validity.valid){
+            return;
+        }
+        const hasNumbers = /\d/.test(title.value); 
+        if(hasNumbers){
+            title.setCustomValidity("No numbers please");
+            title.reportValidity();
+        }
+    });
 });
 
 const close = document.getElementById("close");
@@ -95,8 +107,8 @@ close.addEventListener("click",()=>{
     dialog.close();
 });
 
-const submitForm = document.getElementById("submitForm");
-submitForm.addEventListener("click", (event)=>{
+const bookForm = document.getElementById("bookForm");
+bookForm.addEventListener("submit", (event)=>{
     event.preventDefault();
 
     let title = document.getElementById("title").value;
